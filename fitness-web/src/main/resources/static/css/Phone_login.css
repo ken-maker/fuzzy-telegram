@@ -1,0 +1,49 @@
+body{
+    height:100%;
+    width: 100%;
+}
+#login_div{
+    height: 380px;
+    width:350px;
+    margin-left: 66%;
+    margin-top:20%;
+    position: relative;
+}
+#phoneNumber,#verificationCode{
+    border-radius: 15px;
+    margin-top: 20px;
+    height: 45px;
+    padding-left: 25px;
+    font-size: 18px;
+}
+#tologin_btn,#vf_btn:hover{
+    cursor: pointer;
+}
+#tologin_btn,#vf_btn{
+    height: 45px;
+    background-color: #A6E1EC;
+    border: none;
+    font-size: 22px;
+    width: 350px;
+    border-radius: 15px;
+    margin-bottom: 35px;
+}
+#verificationCode{
+    width:180px;
+}
+#vf_btn_div{
+    margin-left: 190px;
+    margin-top: -45px;
+}
+#vf_btn{
+    width: 160px;
+}
+#to_ID_login{
+    width:160px;
+    margin-top: 60px;
+    font-size: 18px;
+    text-decoration: none;
+}
+a{
+    color: #269ABC;
+}

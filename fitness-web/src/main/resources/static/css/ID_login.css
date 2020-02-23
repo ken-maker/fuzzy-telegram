@@ -1,0 +1,80 @@
+body{
+    height:100%;
+    width: 100%;
+}
+#login_div{
+    height: 380px;
+    width:350px;
+    margin-left: 66%;
+    margin-top:18%;
+    position: relative;
+    /* border-radius: 15px;
+    background: white;
+    background:rgba(200,200,200,0.4); */
+}
+#id,#pw,#phoneNumber{
+    border-radius: 15px;
+    margin-top: 10px;
+    height: 45px;
+    padding-left: 25px;
+    font-size: 18px;
+}
+#login_btn{
+    height: 45px;
+    background-color: #A6E1EC;
+    border: none;
+    font-size: 22px;
+    width: 350px;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+#login_btn:hover{
+    cursor: pointer;
+}
+#vf{
+    border-radius: 20px;
+    width: 140px;
+    margin-top: 20px;
+    height: 45px;
+    padding-left: 25px;
+    font-size: 18px;
+}
+img{
+    width: 190px;
+    height: 60px;
+    margin-left:150px;
+    margin-top: -52px;
+}
+#to_phone_login{
+    width:160px;
+    margin-top: 60px;
+    margin-left:180px;
+    font-size: 18px;
+    text-decoration: none;
+}
+a{
+    color: #269ABC;
+}
+
+/* -------------------忘记密码------------------------------------- */
+#forget_div{
+    height: 250px;
+    display: none;
+    float: left;
+    margin-left:40%;
+    margin-top:-300px;
+    border-radius: 15px;
+    background: white;
+    background:rgba(200,200,200,0.5);
+}
+#forget_btn{
+    height: 45px;
+    background-color: #A6E1EC;
+    border: none;
+    font-size: 22px;
+    width: 200px;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-left: 20px;
+    cursor: hand;
+}

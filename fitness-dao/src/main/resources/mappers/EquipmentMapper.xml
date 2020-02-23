@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.EquipmentDao">
+
+    <select id="getEquipmentById" resultType="com.bean.Equipment">
+        select id, name, price,state,type,picture from equipment where id=#{id}
+    </select>
+
+    <select id="getEquipmentList" resultType="com.bean.Equipment">
+        select id, name, price, state, type,picture from equipment group by id
+    </select>
+
+    <select id="getEquipmentListByPrice" resultType="com.bean.Equipment">
+        select id, name, price, state, type,picture from equipment where price=#{price} group by id
+    </select>
+
+    <select id="getEquipmentListByName" resultType="com.bean.Equipment">
+        select id, name, price,state, type,picture from equipment where name=#{name} group by id
+    </select>
+
+    <select id="getEquipmentListByType" resultType="com.bean.Equipment">
+        select id, name, price,state, type,picture from equipment where type=#{type} group by id
+    </select>
+
+    <select id="getEquipmentListByState" resultType="com.bean.Equipment">
+        select id, name, price,state, type,picture from equipment where state=#{state} group by id
+    </select>
+
+    <insert id="addEquipment">
+        insert into equipment(name, price,state, type,picture)
+        values (#{name},#{price},#{damage},#{state},#{type},#{picture})
+    </insert>
+
+    <delete id="logoutEquipment">
+        delete from equipment where id=#{id}
+    </delete>
+
+    <update id="changeState">
+        update equipment set state=#{state} where id=#{id}
+    </update>
+
+    <update id="changeType">
+        update equipment set type=#{type} where id=#{id}
+    </update>
+
+</mapper>

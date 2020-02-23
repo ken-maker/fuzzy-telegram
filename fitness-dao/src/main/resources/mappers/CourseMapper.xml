@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.CourseDao">
+
+    <select id="getCourse" resultType="com.bean.Course">
+        select id,name,type,peopleCount,
+        picture,nowPeople,classTime
+        from course where id=#{id}
+    </select>
+
+    <select id="getCourseList" resultType="com.bean.Course">
+        select id,name,type,peopleCount,
+        picture,nowPeople,classTime
+        from course group by id
+    </select>
+
+    <insert id="addCourse">
+        insert into course(name, type,
+        peopleCount,picture,nowPeople,classTime)
+        values (#{name},#{type},#{peopleCount},
+        #{picture},#{nowPeople},#{classTime})
+    </insert>
+
+    <delete id="logoutCourse">
+        delete from course where id=#{id}
+    </delete>
+
+    <update id="changeCourseName">
+        update course set name=#{name} where id=#{id}
+    </update>
+
+    <update id="changePeopleCount">
+        update course set peopleCount=#{peopleCount} where id=#{id}
+    </update>
+
+<!--=================添加vip====================-->
+    <update id="addVIP">
+        update course set vipId=#{arg0} where id=#{arg1}
+    </update>
+
+    <update id="updateCourse">
+        update course set
+        name=#{arg0},type=#{arg1},peopleCount=#{arg2},
+        picture=#{arg3},nowPeople=#{arg4},
+        classTime=#{arg5} where id=#{arg6}
+    </update>
+
+
+
+</mapper>

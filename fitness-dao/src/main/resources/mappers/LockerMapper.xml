@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.LockerDao">
+    <select id="getLocker" resultType="com.bean.Locker">
+        select id, "size", aMonthMoney, state, picture, place from locker where id=#{id}
+    </select>
+    <select id="getLockerList" resultType="com.bean.Locker">
+        select id, "size", aMonthMoney, state, picture, place from locker group by id
+    </select>
+    <select id="getLockerListByState" resultType="com.bean.Locker">
+        select id, "size", aMonthMoney, state, picture, place from locker where state=#{state} group by id
+    </select>
+    <insert id="addLocker">
+        insert into locker(size, aMonthMoney, state, picture, place) values (#{size},#{aMonthMoney},#{state},#{picture},#{place})
+    </insert>
+    <delete id="logoutLocker">
+        delete from locker where id=#{id}
+    </delete>
+    <update id="changeState">
+        update locker set state=#{state} where id=#{id}
+    </update>
+
+</mapper>

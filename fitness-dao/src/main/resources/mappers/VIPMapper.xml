@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.VIPDao">
+    <select id="getVIP" resultType="com.bean.VIP">
+        select id, name, age, gender, phoneNumber, handingTime,
+        identityCard, birthDay, password, userID,vipCardId,
+        lockerId,trainer,picture,weight,height,shoulder,
+        chest,waistline,arm,hipline,BMI,bodyFatPercent
+        from vip where id=#{id}
+    </select>
+
+    <select id="getVIPByUserID" resultType="com.bean.VIP">
+        select id, name, age, gender, phoneNumber, handingTime,
+        identityCard, birthDay, password, userID,vipCardId,
+        lockerId,trainer,picture,weight,height,shoulder,
+        chest,waistline,arm,hipline,BMI,bodyFatPercent
+        from vip where userID=#{userID}
+    </select>
+
+    <select id="getVIPList" resultType="com.bean.VIP">
+        select id, name, age, gender, phoneNumber, handingTime,
+        identityCard, birthDay, password, userID,vipCardId,
+        lockerId,trainer,picture,weight,height,shoulder,
+        chest,waistline,arm,hipline,BMI,bodyFatPercent
+        from vip group by id
+    </select>
+    <select id="getVIPListByAge" resultType="com.bean.VIP">
+        select id, name, age, gender, phoneNumber, handingTime,
+        identityCard, birthDay, password, userID,vipCardId,
+        lockerId,trainer,picture,weight,height,shoulder,
+        chest,waistline,arm,hipline,BMI,bodyFatPercent
+        from vip where age=#{type} group by id
+    </select>
+    <select id="getVIPListByGender" resultType="com.bean.VIP">
+        select id, name, age, gender, phoneNumber, handingTime,
+        identityCard, birthDay, password, userID,vipCardId,
+        lockerId,trainer,picture,weight,height,shoulder,
+        chest,waistline,arm,hipline,BMI,bodyFatPercent
+        from vip where gender=#{gender} group by id
+    </select>
+    <select id="getVIPListByHandingTime" resultType="com.bean.VIP">
+        select id, name, age, gender, phoneNumber, handingTime,
+        identityCard, birthDay, password, userID,vipCardId,
+        lockerId,trainer,picture,weight,height,shoulder,
+        chest,waistline,arm,hipline,BMI,bodyFatPercent
+        from vip where handingTime=#{handingTime} group by id
+    </select>
+    <select id="getVIPListByName" resultType="com.bean.VIP">
+        select id, name, age, gender, phoneNumber, handingTime,
+        identityCard, birthDay, password, userID,vipCardId,
+        lockerId,trainer,picture,weight,height,shoulder,
+        chest,waistline,arm,hipline,BMI,bodyFatPercent
+        from vip where name=#{name} group by id
+    </select>
+    <select id="getVIPByPhoneNumber" resultType="com.bean.VIP">
+        select id, name, age, gender, phoneNumber, handingTime,
+        identityCard, birthDay, password, userID,vipCardId,
+        lockerId,trainer,picture,weight,height,shoulder,
+        chest,waistline,arm,hipline,BMI,bodyFatPercent
+        from vip where phoneNumber=#{phoneNumber}
+    </select>
+    <select id="getVIPByIdentityCard" resultType="com.bean.VIP">
+        select id, name, age, gender, phoneNumber, handingTime,
+        identityCard, birthDay, password, userID,vipCardId,
+        lockerId,trainer,picture,weight,height,shoulder,
+        chest,waistline,arm,hipline,BMI,bodyFatPercent
+        from vip where identityCard=#{identityCard}
+    </select>
+
+    <insert id="addVIP">
+        insert into vip(name, age, gender, phoneNumber, handingTime
+        , identityCard, birthDay, password, userID,vipCardId,
+        ,lockerId,trainer,picture,weight,height,shoulder,
+        chest,waistline,arm,hipline,BMI,bodyFatPercent)
+        values (#{name},#{age},#{gender},#{phoneNumber},now(),
+        #{identityCard},#{birthDay},#{password},#{userID},
+        #{vipCardId},#{lockerId},#{trainer},#{picture},
+        #{weight},#{height},#{shoulder},#{chest},#{waistline},#{arm},#{hipline},
+        #{BMI},#{bodyFatPercent})
+    </insert>
+    <delete id="logoutVIP">
+        delete from vip where id=#{id}
+    </delete>
+    <update id="changePhoneNumber">
+        update vip set phoneNumber=#{phoneNumber} where id=#{id}
+    </update>
+
+    <update id="changeVIP" parameterType="com.bean.VIP">
+        update vip set name=#{name},age=#{age},
+        gender=#{gender}, phoneNumber=#{phoneNumber},
+        identityCard=#{identityCard},birthDay=#{birthDay},
+        password=#{password},userID=#{userID},vipCardId=#{vipCardId},
+        lockerId=#{lockerId},trainer=#{trainer},
+        picture=#{picture},weight=#{weight},height=#{height},
+        shoulder=#{shoulder},chest=#{chest},waistline=#{waistline},
+        arm=#{arm},hipline=#{hipline},BMI=#{BMI},bodyFatPercent=#{bodyFatPercent}
+        where id=#{id}
+    </update>
+
+    <update id="changeVIPCourseId" parameterType="com.bean.VIP">
+        update vip set courseId=#{arg0} where userID=#{arg1}
+    </update>
+
+<!--    判断是否为空-->
+    <select id="applied" resultType="int">
+        select count(*) from vip_course
+        where vipId = #{arg0} and courseId = #{arg1}
+    </select>
+
+<!--    向'账号-课程表'添加数据，也就是报名-->
+    <insert id="applieding">
+        insert into vip_course(vipId, courseId)
+        values (#{arg0},#{arg1})
+    </insert>
+
+<!--    查询课程-->
+    <select id="getVIP_Course" resultType="com.bean.VIP_Course">
+        select vipId,courseId from vip_course where vipId=#{arg0}
+    </select>
+
+<!--    取消课程-->
+    <delete id="cancelCourse">
+        delete from vip_course where vipId=#{arg0} and courseId=#{arg1}
+    </delete>
+
+
+<!--================================-->
+    <!--    判断是否为空-->
+    <select id="already" resultType="int">
+        select count(*) from vip_trainer
+        where vipId = #{arg0} and trainerId = #{arg1}
+    </select>
+
+    <!--    查询私教-->
+    <select id="getVIP_Trainer" resultType="com.bean.VIP_Trainer">
+        select vipId,trainerId from vip_trainer where vipId=#{arg0}
+    </select>
+
+    <!--    向'账号-课程表'添加数据，也就是报名-->
+    <insert id="buy">
+        insert into vip_trainer(vipId, trainerId)
+        values (#{arg0},#{arg1})
+    </insert>
+</mapper>
+

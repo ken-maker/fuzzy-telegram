@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.OrderDao">
+
+    <insert id="addOrder">
+        insert into order_table(id, builder, name,trainerId, money,remark)
+        values (#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5})
+    </insert>
+
+    <delete id="deleteOrder">
+        delete from order_table where id=#{id}
+    </delete>
+
+    <select id="getOrderById" resultType="com.bean.Order">
+        select id, builder, name,trainerId, money, dateTime, remark
+        from order_table where id=#{id}
+    </select>
+
+    <select id="getOrderList" resultType="com.bean.Order">
+        select id,builder,name,trainerId,money,dateTime,remark from order_table
+    </select>
+
+    <select id="getOrderListByBuilder" resultType="com.bean.Order">
+        select id,builder,name,trainerId,money,dateTime,remark from order_table where builder=#{builder}
+    </select>
+
+    <select id="getOrderListByName" resultType="com.bean.Order">
+        select id,builder,name,trainerId,money,dateTime,remark from order_table where name=#{name}
+    </select>
+
+    <select id="getOrderListByMoney" resultType="com.bean.Order">
+        select id,builder,name,trainerId,money,dateTime,remark from order_table where money=#{money}
+    </select>
+
+    <select id="getOrderListByDateTime" resultType="com.bean.Order">
+        select id,builder,name,trainerId,money,dateTime,remark from order_table where dateTime=#{dateTime}
+    </select>
+
+
+</mapper>
